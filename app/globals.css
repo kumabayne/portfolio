@@ -5,3 +5,13 @@
 :root {
     font-family: var(--font-inter);
 }
+
+body {
+    background-attachment: fixed;
+    background-image: radial-gradient(
+        154.05% 102.19% at 64.58% 28.66%,
+        #131932 0%,
+        #0d1c24 37.66%,
+        #08090e 100%
+    );
+}

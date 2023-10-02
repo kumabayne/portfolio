@@ -1,24 +1,42 @@
 "use client";
 
+import { useEffect, useRef } from "react";
 import Link from "next/link";
+import { BsGithub, BsLinkedin } from "react-icons/bs";
 import Container from "./Container";
 import Logo from "./Logo";
-import { useEffect, useRef } from "react";
 
-export default function Navigation() {
+function Navigation() {
     const navRef = useRef(null);
-    const logoRef = useRef(null);
-    const links = ["about", "work", "resume"];
+    const links = [
+        { id: 1, href: "#skills", text: "about" },
+        { id: 2, href: "#work", text: "work" },
+        {
+            id: 3,
+            download: true,
+            href: "/files/kuma-bayne_resume.pdf",
+            text: "resume",
+            target: "_blank",
+        },
+        {
+            id: 4,
+            icon: BsLinkedin,
+            href: "https://www.linkedin.com/in/kuma-bayne-1b83b7168/",
+            target: "_blank",
+        },
+        {
+            id: 5,
+            icon: BsGithub,
+            href: "https://github.com/kumabayne",
+            target: "_blank",
+        },
+    ];
 
     const changeNav = () => {
         if (window.scrollY >= 8) {
-            navRef.current.classList.add("bg-zinc-900");
-            logoRef.current.classList.remove("fill-red-400");
-            logoRef.current.classList.add("fill-white");
+            navRef.current.classList.add("bg-black/40");
         } else {
-            navRef.current.classList.remove("bg-zinc-900");
-            logoRef.current.classList.add("fill-red-400");
-            logoRef.current.classList.remove("fill-white");
+            navRef.current.classList.remove("bg-black/40");
         }
     };
 
@@ -31,32 +49,36 @@ export default function Navigation() {
 
     return (
         <nav
-            className="duration-500 ease-in-out mt-4 py-1 transition-all"
             ref={navRef}
+            className="backdrop-blur-md duration-500 ease-in-out py-4 transition-colors"
         >
             <Container>
                 <div className="flex items-center justify-between">
                     <Link href="/">
-                        <Logo
-                            className="fill-red-400 hover:-scale-x-100"
-                            ref={logoRef}
-                        />
+                        <Logo className="fill-indigo-200 hover:-scale-x-100" />
                     </Link>
-                    <ul className="flex gap-6 px-6 py-2 relative after:absolute after:bg-dark-pattern after:inset-0 after:-skew-x-12 after:-z-10">
-                        {links.map((link, i) => (
-                            <li key={i}>
+                    <ul className="flex gap-6 items-center">
+                        {links.map((link) => (
+                            <li key={link.id}>
                                 <Link
-                                    href={`${
-                                        link === "resume"
-                                            ? "/files/kuma-bayne_resume.pdf"
-                                            : `#${link}`
-                                    }`}
-                                    className="font-semibold text-white hover:border-b-2 hover:border-red-400"
-                                    {...(link === "resume" && {
-                                        download: true,
-                                    })}
+                                    className="cursor-pointer duration-300 ease-in-out font-medium text-indigo-100 text-sm transition-colors hover:text-indigo-300"
+                                    href={link.href}
+                                    target={link.target ? "_blank" : "_self"}
+                                    {...(link.download && { download: true })}
                                 >
-                                    {link}
+                                    {link.text ? (
+                                        <>
+                                            {link.text}
+                                            <span className="font-semibold pl-0.5 text-blue-400">
+                                                .
+                                            </span>
+                                        </>
+                                    ) : (
+                                        <link.icon
+                                            className="text-white hover:text-indigo-300"
+                                            size="18"
+                                        />
+                                    )}
                                 </Link>
                             </li>
                         ))}
@@ -66,3 +88,5 @@ export default function Navigation() {
         </nav>
     );
 }
+
+export default Navigation;
