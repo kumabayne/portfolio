@@ -14,7 +14,7 @@ function Navigation() {
     {
       id: 3,
       download: true,
-      href: "/files/Kuma-Bayne_Resume.pdf",
+      href: "/files/kuma-bayne_resume.pdf",
       text: "resume",
       target: "_blank",
     },
