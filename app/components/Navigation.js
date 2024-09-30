@@ -9,8 +9,8 @@ import Logo from "./Logo";
 function Navigation() {
   const navRef = useRef(null);
   const links = [
-    { id: 1, href: "#skills", text: "about" },
-    { id: 2, href: "#work", text: "work" },
+    { id: 1, href: "#work", text: "work" },
+    { id: 2, href: "#skills", text: "about" },
     {
       id: 3,
       download: true,
@@ -32,25 +32,10 @@ function Navigation() {
     },
   ];
 
-  const changeNav = () => {
-    if (window.scrollY >= 8) {
-      navRef.current.classList.add("bg-black/40");
-    } else {
-      navRef.current.classList.remove("bg-black/40");
-    }
-  };
-
-  useEffect(() => {
-    changeNav();
-    window.addEventListener("scroll", changeNav);
-
-    return () => window.removeEventListener("scroll", changeNav);
-  }, []);
-
   return (
     <nav
       ref={navRef}
-      className="backdrop-blur-md duration-500 ease-in-out py-4 transition-colors"
+      className="duration-500 ease-in-out py-4 transition-colors border-b border-white/10 bg-slate-800"
     >
       <Container>
         <div className="flex items-center justify-between">
@@ -69,7 +54,7 @@ function Navigation() {
                   {link.text ? (
                     <>
                       {link.text}
-                      <span className="font-semibold pl-0.5 text-blue-400">
+                      <span className="font-semibold pl-0.5 text-indigo-600">
                         .
                       </span>
                     </>
