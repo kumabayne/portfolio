@@ -21,7 +21,7 @@ function Navigation() {
     {
       id: 4,
       icon: BsLinkedin,
-      href: "https://www.linkedin.com/in/kuma-bayne-1b83b7168/",
+      href: "https://www.linkedin.com/in/cullen-bayne-1b83b7168/",
       target: "_blank",
     },
     {
